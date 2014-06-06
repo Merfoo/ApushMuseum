@@ -1,0 +1,79 @@
+.animRightToCenter
+{
+    -webkit-animation: animRightToCenter 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animRightToCenter 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animRightToCenter
+{
+    0% {top: 0px; left: 100%;}
+    100% {top: 0px; left: 0px;}
+}
+
+@keyframes animRightToCenter
+{
+    0% {top: 0px; left: 100%;}
+    100% {top: 0px; left: 0px;}
+}
+
+.animCenterToRight
+{
+    -webkit-animation: animCenterToRight 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animCenterToRight 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animCenterToRight
+{
+    0% {top: 0px; left: 0px;}
+    100% {top: 0px; left: 100%;}
+}
+
+@keyframes animCenterToRight
+{
+    0% {top: 0px; left: 0px;}
+    100% {top: 0px; left: 100%;}
+}
+
+.animFadeOut
+{
+    -webkit-animation: animFadeOut 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animFadeOut 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animFadeOut
+{
+    0% {opacity: 1; visibility: visible;}
+    100% {opacity: 0; visibility: hidden;}
+}
+
+@keyframes animFadeOut
+{
+    0% {opacity: 1; visibility: visible;}
+    100% {opacity: 0; visibility: hidden;}
+}
+
+.animFadeIn
+{
+    -webkit-animation: animFadeIn 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animFadeIn 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animFadeIn
+{
+    0% {opacity: 0; visibility: hidden;}
+    100% {opacity: 1; visibility: visible;}
+}
+
+@keyframes animFadeIn
+{
+    0% {opacity: 0; visibility: hidden;}
+    100% {opacity: 1; visibility: visible;}
+}

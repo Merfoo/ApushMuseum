@@ -11,6 +11,8 @@ window.onload = function()
 
     else 
     {
+        initDom();
+        
         // Babylon
         var engine = new BABYLON.Engine(canvas, true);
         
@@ -18,10 +20,10 @@ window.onload = function()
         _screen.width = window.innerWidth;
         _screen.height = window.innerHeight;
         
-        //Creation of the scene 
+        // Creation of the scene 
         _scene = new BABYLON.Scene(engine);
         
-        //Adding of the light on the scene
+        // Adding of the light on the scene
         var light0 = new BABYLON.HemisphericLight("Hemi0", new BABYLON.Vector3(0, 1, 0), _scene);
         light0.diffuse = new BABYLON.Color3(1, 1, 1);
         light0.specular = new BABYLON.Color3(1, 1, 1);
@@ -29,13 +31,31 @@ window.onload = function()
 
         // Cameras
         _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, 5), _scene);
-        _scene.activeCameras.push(_camera);
+        
+        // Attach camera to canvas
+        _scene.activeCamera.attachControl(canvas);
 
+        // Load all the models
+        BABYLON.SceneLoader.ImportMesh("", "scenes/littleBoy/", "littleBoy.babylon", _scene, function(newMeshes)
+        {
+            newMeshes[0].position = new BABYLON.Vector3(0, -30, 0);
+            _infos[_modelNames.littleBoy = newMeshes[0].id] = document.getElementById("infoLittleBoy");
+            
+        });
+        
+        // Set up player
+        _player.body = _camera;
+        _player.forward = BABYLON.Mesh.CreateBox("playerForward", 3, _scene);
+        _player.forward.parent = _player.body;
+        _player.forward.position.z = 1;
+        _player.forward.isVisible = false;
+        
         // Once the scene is loaded, just register a render loop to render it
         engine.runRenderLoop(function ()
         {
             if(modelsLoaded())
-            {                            
+            {                   
+                updatePlayer();
                 _scene.render();
             }
         });
@@ -45,8 +65,35 @@ window.onload = function()
         {
             engine.resize();
         });
+        
+        window.addEventListener("keyup", keyUpEvent);
+        window.addEventListener("keydown", keyDownEvent);
+        canvas.addEventListener("click", clickEvent);
     } 
 };
+
+function initDom()
+{
+    _dom.hideInfo = document.getElementById("hideInfo");
+    _dom.hideInfo.onclick = hideInfo;
+}
+
+function updatePlayer()
+{
+    _player.updateVelocity();
+    
+    if(_keys.forward)
+    {
+        _player.body.position.x += _player.vel.x;
+        _player.body.position.z += _player.vel.z;
+    }
+    
+    if(_keys.backward)
+    {
+        _player.body.position.x -= _player.vel.x;
+        _player.body.position.z -= _player.vel.z;
+    }
+}
 
 function modelsLoaded()
 {
