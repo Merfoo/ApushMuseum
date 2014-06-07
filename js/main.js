@@ -51,6 +51,14 @@ window.onload = function()
             _models.loaded++;
         });
         
+        _models.total++;
+        BABYLON.SceneLoader.ImportMesh("", "scenes/fatMan/", "fatMan.babylon", _scene, function(newMeshes)
+        {
+            newMeshes[0].position = new BABYLON.Vector3(0, -30, 100);
+            _infos[_modelNames.fatMan = newMeshes[0].id] = document.getElementById("infoFatMan");
+            _models.loaded++;
+        });
+        
         // Set up player
         _player.body = _camera;
         _player.forward = BABYLON.Mesh.CreateBox("playerForward", 3, _scene);

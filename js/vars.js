@@ -60,15 +60,14 @@ var _anims = {
     fadeOut: "animFadeOut"
 };
 var _keyCodes = { 
-    space: 32, 
+    back: 8, 
     a: 65, 
     w: 87,
     s: 83,
-    d: 68, 
-    enter: 13, 
-    esc: 27
+    d: 68
 };
 var _modelNames = {
     showing: null,
-    littleBoy: "littleBoy"
+    littleBoy: "littleBoy", 
+    fatMan: "fatMan"
 };

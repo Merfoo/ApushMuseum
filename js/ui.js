@@ -24,9 +24,12 @@ function showInfo(el)
 // Hides info page
 function hideInfo()
 {
-    removeAnimations(_infos[_modelNames.showing]);
-    _infos[_modelNames.showing].classList.add(_anims.centerToRight);
-    _modelNames.showing = null;
-    removeAnimations(_dom.hideInfo);
-    _dom.hideInfo.classList.add(_anims.fadeOut);
+    if(_modelNames.showing !== null)
+    {
+        removeAnimations(_infos[_modelNames.showing]);
+        _infos[_modelNames.showing].classList.add(_anims.centerToRight);
+        _modelNames.showing = null;
+        removeAnimations(_dom.hideInfo);
+        _dom.hideInfo.classList.add(_anims.fadeOut);
+    }
 }

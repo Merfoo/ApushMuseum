@@ -18,6 +18,10 @@ function keyUpEvent(e)
         case _keyCodes.d:
             _keys.right = false;
             break;
+            
+        case _keyCodes.back:
+            hideInfo();
+            break;
     }
 }
 
@@ -54,6 +58,7 @@ function mouseClickEvent(e)
         switch(picked.pickedMesh.id)
         {
             case _modelNames.littleBoy:
+            case _modelNames.fatMan:
                 showInfo(_infos[picked.pickedMesh.id]);
                 _modelNames.showing = picked.pickedMesh.id;
                 break;
