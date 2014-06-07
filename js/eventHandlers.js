@@ -10,6 +10,14 @@ function keyUpEvent(e)
         case _keyCodes.s:
             _keys.backward = false;
             break;
+            
+        case _keyCodes.a:
+            _keys.left = false;
+            break;
+            
+        case _keyCodes.d:
+            _keys.right = false;
+            break;
     }
 }
 
@@ -27,11 +35,11 @@ function keyDownEvent(e)
             break;
             
         case _keyCodes.a:
-            _player.body.rotation.y += toRad(20);
+            _keys.left = true;
             break;
             
         case _keyCodes.d:
-            _player.body.rotation.y -= toRad(20);
+            _keys.right = true;
             break;
     }
 }

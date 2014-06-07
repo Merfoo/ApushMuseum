@@ -57,6 +57,14 @@ window.onload = function()
         _player.forward.parent = _player.body;
         _player.forward.position.z = 1;
         _player.forward.isVisible = false;
+        _player.left = BABYLON.Mesh.CreateBox("playerLeft", 3, _scene);
+        _player.left.parent = _player.body;
+        _player.left.position.x = -1;
+        _player.left.isVisible = false;
+        _player.right = BABYLON.Mesh.CreateBox("playerRight", 3, _scene);
+        _player.right.parent = _player.body;
+        _player.right.position.x = 1;
+        _player.right.isVisible = false;
         
         // Once the scene is loaded, just register a render loop to render it
         engine.runRenderLoop(function ()
@@ -101,6 +109,18 @@ function updatePlayer()
     {
         _player.body.position.x -= _player.vel.x;
         _player.body.position.z -= _player.vel.z;
+    }
+    
+    if(_keys.left)
+    {
+        _player.body.position.x += _player.velLeft.x;
+        _player.body.position.z += _player.velLeft.z;
+    }
+    
+    if(_keys.right)
+    {
+        _player.body.position.x += _player.velRight.x;
+        _player.body.position.z += _player.velRight.z;
     }
     
     if(Math.abs(_viewAngle.horz) > _viewAngle.horzMax)
