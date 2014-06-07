@@ -19,13 +19,8 @@ Player = function()
     };
 };
 
-Model = function()
-{
-    this.mesh = null;
-    this.minDist = 8;
-};
-
 var _scene = { width: 0, height: 0 };
+var _viewAngle = { horzMax: 80, horzSum: 0, horzInc: 2, horz: 0, vert: 0, vertMin: -80, vertMax: 80 };
 var _models = { total: 0, loaded: 0 };
 var _screen = { width: 0, height: 0 };
 var _player = new Player();

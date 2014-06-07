@@ -36,11 +36,19 @@ window.onload = function()
         _scene.activeCamera.attachControl(canvas);
 
         // Load all the models
+        _models.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/littleBoy/", "littleBoy.babylon", _scene, function(newMeshes)
         {
             newMeshes[0].position = new BABYLON.Vector3(0, -30, 0);
             _infos[_modelNames.littleBoy = newMeshes[0].id] = document.getElementById("infoLittleBoy");
-            
+            _models.loaded++;
+        });
+        
+        _models.total++;
+        BABYLON.SceneLoader.ImportMesh("", "scenes/pedestal/", "column.babylon", _scene, function(newMeshes)
+        {
+            newMeshes[0].position = new BABYLON.Vector3(0, -310, 0);        
+            _models.loaded++;
         });
         
         // Set up player
@@ -68,7 +76,8 @@ window.onload = function()
         
         window.addEventListener("keyup", keyUpEvent);
         window.addEventListener("keydown", keyDownEvent);
-        canvas.addEventListener("click", clickEvent);
+        canvas.addEventListener("click", mouseClickEvent);
+        canvas.addEventListener("mousemove", mouseMoveEvent);
     } 
 };
 
@@ -93,6 +102,13 @@ function updatePlayer()
         _player.body.position.x -= _player.vel.x;
         _player.body.position.z -= _player.vel.z;
     }
+    
+    if(Math.abs(_viewAngle.horz) > _viewAngle.horzMax)
+        _viewAngle.horzSum += _viewAngle.horzInc * (_viewAngle.horz >= 0 ? 1 : -1);
+    
+    // x is up/down, y is left/right
+    _player.body.rotation.y = toRad(_viewAngle.horz + _viewAngle.horzSum);
+    _player.body.rotation.x = toRad(_viewAngle.vert);
 }
 
 function modelsLoaded()

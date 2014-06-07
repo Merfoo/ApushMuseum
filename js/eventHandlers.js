@@ -25,11 +25,19 @@ function keyDownEvent(e)
         case _keyCodes.s:
             _keys.backward = true;
             break;
+            
+        case _keyCodes.a:
+            _player.body.rotation.y += toRad(20);
+            break;
+            
+        case _keyCodes.d:
+            _player.body.rotation.y -= toRad(20);
+            break;
     }
 }
 
 // Handle click event
-function clickEvent(e)
+function mouseClickEvent(e)
 {
     var picked = _scene.pick(e.clientX, e.clientY);
     
@@ -43,6 +51,13 @@ function clickEvent(e)
                 break;
         }
     }
-    
-    console.log(picked);
+}
+
+// Handles mouse move event
+function mouseMoveEvent(e)
+{
+    var x = e.clientX;
+    var y = e.clientY;
+    _viewAngle.horz = ((x - (_screen.width / 2))/ (_screen.width / 2)) * 90;
+    _viewAngle.vert = ((y - (_screen.height / 2))/ (_screen.height / 2)) * 90;
 }
