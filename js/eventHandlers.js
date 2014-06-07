@@ -18,10 +18,6 @@ function keyUpEvent(e)
         case _keyCodes.d:
             _keys.right = false;
             break;
-            
-        case _keyCodes.back:
-            hideInfo();
-            break;
         
         case _keyCodes.esc:
             showStartMenu();

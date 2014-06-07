@@ -14,10 +14,6 @@ window.onload = function()
         // Babylon
         var engine = new BABYLON.Engine(_dom.canvas, true);
         
-        // Set map size const
-        _screen.width = window.innerWidth;
-        _screen.height = window.innerHeight;
-        
         // Creation of the scene 
         _scene = new BABYLON.Scene(engine);
         
@@ -27,8 +23,21 @@ window.onload = function()
         light0.specular = new BABYLON.Color3(1, 1, 1);
         light0.groundColor = new BABYLON.Color3(0, 0, 0);
 
+        // Adding skybox
+        var skybox = BABYLON.Mesh.CreateBox("skyBox", 100.0, _scene);
+        var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", _scene);
+        skyboxMaterial.backFaceCulling = false;
+        skybox.material = skyboxMaterial;
+        skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+        skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("images/skybox/skybox", _scene);
+        skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+        skybox.infiniteDistance = true;
+        skybox.scaling = new BABYLON.Vector3(16, 16, 16);
+        
         // Cameras
         _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, 5), _scene);
+        _camera.maxZ = 2000;
         
         // Attach camera to canvas
         _scene.activeCamera.attachControl(_dom.canvas);
@@ -106,21 +115,24 @@ window.onload = function()
         
         window.addEventListener("keyup", keyUpEvent);
         window.addEventListener("keydown", keyDownEvent);
+        window.onpagehide = window.onblur = windowLostFocusEvent;
         document.addEventListener('pointerlockchange', pointerLockChangeEvent, false);
         document.addEventListener('mozpointerlockchange', pointerLockChangeEvent, false);
         document.addEventListener('webkitpointerlockchange', pointerLockChangeEvent, false);
         _dom.canvas.addEventListener("click", mouseClickEvent);
         _dom.canvas.addEventListener("mousemove", mouseMoveEvent);
-        window.onpagehide = window.onblur = windowLostFocusEvent;
     } 
 };
 
 function initDom()
 {
+    _screen.width = window.innerWidth;
+    _screen.height = window.innerHeight;
     _dom.canvas = document.getElementById("gameCanvas");
     _dom.hideInfo = document.getElementById("hideInfo");
     _dom.hideInfo.onclick = hideInfo;
     _dom.startMenu = document.getElementById("startMenu");
+    _dom.crosshair = document.getElementById("crosshair");
     document.getElementById("play").onclick = initGame;
 }
 

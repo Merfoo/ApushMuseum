@@ -44,6 +44,18 @@
     font-size: 48px;
 }
 
+#crosshair
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 83px;
+    height: 83px;
+    margin-left: -41.5px;
+    margin-top: -41.5px;
+    opacity: 0;
+}
+
 #hideInfo
 {
     position: absolute;

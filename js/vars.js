@@ -55,7 +55,8 @@ var _infos = {};
 var _dom = {
     canvas: null,
     startMenu: null,
-    hideInfo: null
+    hideInfo: null,
+    crosshair: null
 };
 var _anims = {
     upToCenter: "animUpToCenter",

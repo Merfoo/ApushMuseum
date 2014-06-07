@@ -42,6 +42,7 @@ function hideInfo()
 function showStartMenu()
 {
     hideInfo();
+    hideCrosshair();
     removeAnimations(_dom.startMenu);
     _dom.startMenu.classList.add(_anims.upToCenter);
     _game.inGame = false;
@@ -50,7 +51,22 @@ function showStartMenu()
 // Hides start menu
 function hideStartMenu()
 {
+    showCrosshair();
     removeAnimations(_dom.startMenu);
     _dom.startMenu.classList.add(_anims.centerToUp);
     _game.inGame = true;
+}
+
+// Shows crosshair
+function showCrosshair()
+{
+    removeAnimations(_dom.crosshair);
+    _dom.crosshair.classList.add(_anims.fadeIn);
+}
+
+// Hides crosshair
+function hideCrosshair()
+{
+    removeAnimations(_dom.crosshair);
+    _dom.crosshair.classList.add(_anims.fadeOut);
 }
