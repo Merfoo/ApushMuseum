@@ -132,7 +132,7 @@ function initGame()
 
 function enablePointerLock()
 {
-    _dom.canvas.requestPointerLock = _dom.canvas.requestPointerLock || _dom.canvas.mozRequestPointerLock;
+    _dom.canvas.requestPointerLock = _dom.canvas.webkitRequestPointerLock || _dom.canvas.mozRequestPointerLock;
     _dom.canvas.requestPointerLock();
 }
 
