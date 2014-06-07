@@ -22,6 +22,10 @@ function keyUpEvent(e)
         case _keyCodes.back:
             hideInfo();
             break;
+        
+        case _keyCodes.esc:
+            showStartMenu();
+            break;
     }
 }
 
@@ -51,7 +55,7 @@ function keyDownEvent(e)
 // Handle click event
 function mouseClickEvent(e)
 {
-    var picked = _scene.pick(e.clientX, e.clientY);
+    var picked = _scene.pick(_screen.width / 2, _screen.height / 2);
     
     if(picked.hit)
     {
@@ -59,6 +63,7 @@ function mouseClickEvent(e)
         {
             case _modelNames.littleBoy:
             case _modelNames.fatMan:
+            case _modelNames.enolaGay:
                 showInfo(_infos[picked.pickedMesh.id]);
                 _modelNames.showing = picked.pickedMesh.id;
                 break;
@@ -69,8 +74,23 @@ function mouseClickEvent(e)
 // Handles mouse move event
 function mouseMoveEvent(e)
 {
-    var x = e.clientX;
-    var y = e.clientY;
-    _viewAngle.horz = ((x - (_screen.width / 2))/ (_screen.width / 2)) * 90;
-    _viewAngle.vert = ((y - (_screen.height / 2))/ (_screen.height / 2)) * 90;
+    if(_mouse.pointerLocked)
+    {
+        var xMov = e.webkitMovementX || e.mozMovementX || 0;
+        var yMov = e.webkitMovementY || e.mozMovementY || 0;
+        _viewAngle.horzSum += (xMov * .75);
+        _viewAngle.vertSum += (yMov * .75);
+    }
+}
+
+// Handles pointerlock changes
+function pointerLockChangeEvent(e)
+{
+    _mouse.pointerLocked = document.webkitPointerLockElement === _dom.canvas || document.mozPointerLockElement === _dom.canvas;
+}
+
+// Handles when window loses focus
+function windowLostFocusEvent()
+{
+    showStartMenu();
 }

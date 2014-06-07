@@ -44,22 +44,29 @@ Player = function()
 };
 
 var _scene = { width: 0, height: 0 };
-var _viewAngle = { horzMax: 80, horzSum: 0, horzInc: 1, horz: 0, vert: 0, vertMin: -80, vertMax: 80 };
+var _viewAngle = { horz: 0, horzSum: 0, vert: 0, vertSum: 0, vertMin: -80, vertMax: 80 };
 var _models = { total: 0, loaded: 0 };
 var _screen = { width: 0, height: 0 };
+var _game = { inGame: false };
+var _mouse = { pointerLocked: false };
 var _player = new Player();
 var _keys = { forward: false, backward: false, left: false, right: false };
 var _infos = {};
 var _dom = {
+    canvas: null,
+    startMenu: null,
     hideInfo: null
 };
 var _anims = {
+    upToCenter: "animUpToCenter",
+    centerToUp: "animCenterToUp",
     rightToCenter: "animRightToCenter",
     centerToRight: "animCenterToRight",
     fadeIn: "animFadeIn",
     fadeOut: "animFadeOut"
 };
 var _keyCodes = { 
+    esc: 27,
     back: 8, 
     a: 65, 
     w: 87,
@@ -68,6 +75,7 @@ var _keyCodes = {
 };
 var _modelNames = {
     showing: null,
+    enolaGay: "enolaGay",
     littleBoy: "littleBoy", 
     fatMan: "fatMan"
 };

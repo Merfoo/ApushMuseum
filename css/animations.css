@@ -38,6 +38,46 @@
     100% {top: 0px; left: 100%;}
 }
 
+.animUpToCenter
+{
+    -webkit-animation: animUpToCenter 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animUpToCenter 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animUpToCenter
+{
+    0% {top: -100%; left: 0px;}
+    100% {top: 0px; left: 0px;}
+}
+
+@keyframes animUpToCenter
+{
+    0% {top: -100%; left: 0px;}
+    100% {top: 0px; left: 0px;}
+}
+
+.animCenterToUp
+{
+    -webkit-animation: animCenterToUp 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animCenterToUp 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animCenterToUp
+{
+    0% {top: 0px; left: 0px;}
+    100% {top: -100%; left: 0px;}
+}
+
+@keyframes animCenterToUp
+{
+    0% {top: 0px; left: 0px;}
+    100% {top: -100%; left: 0px;}
+}
+
 .animFadeOut
 {
     -webkit-animation: animFadeOut 1.25s;

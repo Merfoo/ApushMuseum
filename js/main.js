@@ -3,18 +3,16 @@ document.documentElement.style.overflowY = "hidden";     // Vert scrollbar will 
 
 window.onload = function()
 {
-    var canvas = document.getElementById("gameCanvas");
+    initDom();
 
     // Check support
     if (!BABYLON.Engine.isSupported())
         window.alert('Browser not supported');
 
     else 
-    {
-        initDom();
-        
+    {        
         // Babylon
-        var engine = new BABYLON.Engine(canvas, true);
+        var engine = new BABYLON.Engine(_dom.canvas, true);
         
         // Set map size const
         _screen.width = window.innerWidth;
@@ -33,7 +31,7 @@ window.onload = function()
         _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, 5), _scene);
         
         // Attach camera to canvas
-        _scene.activeCamera.attachControl(canvas);
+        _scene.activeCamera.attachControl(_dom.canvas);
 
         // Load all the models
         _models.total++;
@@ -56,6 +54,22 @@ window.onload = function()
         {
             newMeshes[0].position = new BABYLON.Vector3(0, -30, 100);
             _infos[_modelNames.fatMan = newMeshes[0].id] = document.getElementById("infoFatMan");
+            _models.loaded++;
+        });
+        
+        _models.total++;
+        BABYLON.SceneLoader.ImportMesh("", "scenes/enolaGay/", "enolaGay.babylon", _scene, function(newMeshes)
+        {
+            newMeshes[0].position = new BABYLON.Vector3(0, -30, -500);
+            _infos[_modelNames.enolaGay = newMeshes[0].id] = document.getElementById("infoEnolaGay");
+            _models.loaded++;
+        });
+        
+        _models.total++;
+        BABYLON.SceneLoader.ImportMesh("", "scenes/museum/", "museum.babylon", _scene, function(newMeshes)
+        {
+            newMeshes[0].position = new BABYLON.Vector3(0, -30, 500);
+            newMeshes[0].scaling = new BABYLON.Vector3(.5, .5, .5);
             _models.loaded++;
         });
         
@@ -92,30 +106,60 @@ window.onload = function()
         
         window.addEventListener("keyup", keyUpEvent);
         window.addEventListener("keydown", keyDownEvent);
-        canvas.addEventListener("click", mouseClickEvent);
-        canvas.addEventListener("mousemove", mouseMoveEvent);
+        document.addEventListener('pointerlockchange', pointerLockChangeEvent, false);
+        document.addEventListener('mozpointerlockchange', pointerLockChangeEvent, false);
+        document.addEventListener('webkitpointerlockchange', pointerLockChangeEvent, false);
+        _dom.canvas.addEventListener("click", mouseClickEvent);
+        _dom.canvas.addEventListener("mousemove", mouseMoveEvent);
+        window.onpagehide = window.onblur = windowLostFocusEvent;
     } 
 };
 
 function initDom()
 {
+    _dom.canvas = document.getElementById("gameCanvas");
     _dom.hideInfo = document.getElementById("hideInfo");
     _dom.hideInfo.onclick = hideInfo;
+    _dom.startMenu = document.getElementById("startMenu");
+    document.getElementById("play").onclick = initGame;
+}
+
+function initGame()
+{
+    hideStartMenu();
+    enablePointerLock();
+}
+
+function enablePointerLock()
+{
+    _dom.canvas.requestPointerLock = _dom.canvas.requestPointerLock || _dom.canvas.mozRequestPointerLock;
+    _dom.canvas.requestPointerLock();
+}
+
+function disablePointerLock()
+{
+    document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock || document.webkitExitPointerLock;
+    document.exitPointerLock();
 }
 
 function updatePlayer()
 {
+    if(!_game.inGame)
+        return;
+    
     _player.updateVelocity();
     
     if(_keys.forward)
     {
         _player.body.position.x += _player.vel.x;
+        _player.body.position.y += _player.vel.y;
         _player.body.position.z += _player.vel.z;
     }
     
     if(_keys.backward)
     {
         _player.body.position.x -= _player.vel.x;
+        _player.body.position.y -= _player.vel.y;
         _player.body.position.z -= _player.vel.z;
     }
     
@@ -131,12 +175,15 @@ function updatePlayer()
         _player.body.position.z += _player.velRight.z;
     }
     
-    if(Math.abs(_viewAngle.horz) > _viewAngle.horzMax)
-        _viewAngle.horzSum += _viewAngle.horzInc * (_viewAngle.horz >= 0 ? 1 : -1);
+    if(_viewAngle.vertSum > _viewAngle.vertMax)
+        _viewAngle.vertSum = _viewAngle.vertMax;
+    
+    else if(_viewAngle.vertSum < _viewAngle.vertMin)
+        _viewAngle.vertSum = _viewAngle.vertMin;
     
     // x is up/down, y is left/right
-    _player.body.rotation.y = toRad(_viewAngle.horz + _viewAngle.horzSum);
-    _player.body.rotation.x = toRad(_viewAngle.vert);
+    _player.body.rotation.y = toRad(_viewAngle.horzSum);
+    _player.body.rotation.x = toRad(_viewAngle.vertSum);
 }
 
 function modelsLoaded()
