@@ -38,6 +38,46 @@
     100% {top: 0px; left: 100%;}
 }
 
+.animLeftToCenter
+{
+    -webkit-animation: animLeftToCenter 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animLeftToCenter 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animLeftToCenter
+{
+    0% {top: 0px; left: -100%;}
+    100% {top: 0px; left: 0px;}
+}
+
+@keyframes animLeftToCenter
+{
+    0% {top: 0px; left: -100%;}
+    100% {top: 0px; left: 0px;}
+}
+
+.animCenterToLeft
+{
+    -webkit-animation: animCenterToLeft 1.25s;
+    -webkit-animation-fill-mode: forwards;
+    animation: animCenterToLeft 1.25s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animCenterToLeft
+{
+    0% {top: 0px; left: 0px;}
+    100% {top: 0px; left: -100%;}
+}
+
+@keyframes animCenterToLeft
+{
+    0% {top: 0px; left: 0px;}
+    100% {top: 0px; left: -100%;}
+}
+
 .animUpToCenter
 {
     -webkit-animation: animUpToCenter 1.25s;

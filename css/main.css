@@ -18,13 +18,6 @@
     font-family: openSansLight;
 }
 
-#debugText
-{
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 48px;
-}
 #gameCanvas
 {
     position: absolute;
@@ -61,6 +54,18 @@
     margin-left: -41.5px;
     margin-top: -41.5px;
     opacity: 0;
+}
+
+#loadingMenu
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/Sherwin2012.jpg");
+    font-size: 36px;
+    text-align: center;
 }
 
 #hideInfo
