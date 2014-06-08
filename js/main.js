@@ -87,7 +87,7 @@ window.onload = function()
         _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/museum/", "museum.babylon", _scene, function(newMeshes)
         {
-            _models.push(newMeshes[0]);
+            //_models.push(newMeshes[0]);
             newMeshes[0].position = new BABYLON.Vector3(0, 0, 0);
             newMeshes[0].scaling = new BABYLON.Vector3(1, 1, 1);
             newMeshes[0].checkCollisions = true;
@@ -179,7 +179,13 @@ function updatePlayer()
         _player.body.position.x += _player.vel.x;
         _player.body.position.y += _player.vel.y;
         _player.body.position.z += _player.vel.z;
-        collides();
+        
+        if(collides())
+        {
+            _player.body.position.x -= _player.vel.x;
+            _player.body.position.y -= _player.vel.y;
+            _player.body.position.z -= _player.vel.z;
+        }
     }
     
     if(_keys.backward)
@@ -187,30 +193,46 @@ function updatePlayer()
         _player.body.position.x -= _player.vel.x;
         _player.body.position.y -= _player.vel.y;
         _player.body.position.z -= _player.vel.z;
-        collides();
+        
+        if(collides())
+        {
+            _player.body.position.x += _player.vel.x;
+            _player.body.position.y += _player.vel.y;
+            _player.body.position.z += _player.vel.z;
+        }
     }
     
     if(_keys.left)
     {
         _player.body.position.x += _player.velLeft.x;
         _player.body.position.z += _player.velLeft.z;
-        collides();
+        
+        if(collides())
+        {
+            _player.body.position.x -= _player.velLeft.x;
+            _player.body.position.z -= _player.velLeft.z;
+        }
     }
     
     if(_keys.right)
     {
         _player.body.position.x += _player.velRight.x;
         _player.body.position.z += _player.velRight.z;
-        collides();
+        
+        if(collides())
+        {
+            _player.body.position.x -= _player.velRight.x;
+            _player.body.position.z -= _player.velRight.z;
+        }
     }
     
 }
 
 function collides()
 {
-//    for(var i = 0, len = _models.length; i < len; i++)
-//        if(_player.forward.intersectsMesh(_models[i], true))
-//            console.log("COLLIDED");
+    for(var i = 0, len = _models.length; i < len; i++)
+        if(_models[i].intersectsPoint(_player.body.position, true))
+            return true;//console.log("COLLIDED");
     
     return false;
 }
