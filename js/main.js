@@ -33,75 +33,88 @@ window.onload = function()
         skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("images/skybox/skybox", _scene);
         skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skybox.infiniteDistance = true;
-        skybox.scaling = new BABYLON.Vector3(16, 16, 16);
+        skybox.scaling = new BABYLON.Vector3(50, 50, 50);
         
         // Cameras
         _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, 5), _scene);
-        _camera.maxZ = 2000;
+        _camera.position = new BABYLON.Vector3(0, 350, 550);
+        _camera.maxZ = 10000;
         
         // Attach camera to canvas
         _scene.activeCamera.attachControl(_dom.canvas);
-
+    
         // Load all the models
-        _models.total++;
+        _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/littleBoy/", "littleBoy.babylon", _scene, function(newMeshes)
         {
+            _models.push(newMeshes[0]);
             newMeshes[0].position = new BABYLON.Vector3(0, -30, 0);
+            newMeshes[0].checkCollisions = true;
             _infos[_modelNames.littleBoy = newMeshes[0].id] = document.getElementById("infoLittleBoy");
-            _models.loaded++;
+            _loadingModels.loaded++;
         });
         
-        _models.total++;
+        _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/pedestal/", "column.babylon", _scene, function(newMeshes)
         {
-            newMeshes[0].position = new BABYLON.Vector3(0, -310, 0);        
-            _models.loaded++;
+            _models.push(newMeshes[0]);
+            newMeshes[0].position = new BABYLON.Vector3(0, -181, 0);
+            newMeshes[0].scaling = new BABYLON.Vector3(.5, .5, .5);
+            newMeshes[0].checkCollisions = true;
+            _loadingModels.loaded++;
         });
         
-        _models.total++;
+        _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/fatMan/", "fatMan.babylon", _scene, function(newMeshes)
         {
+            _models.push(newMeshes[0]);
             newMeshes[0].position = new BABYLON.Vector3(0, -30, 100);
+            newMeshes[0].checkCollisions = true;
             _infos[_modelNames.fatMan = newMeshes[0].id] = document.getElementById("infoFatMan");
-            _models.loaded++;
+            _loadingModels.loaded++;
         });
         
-        _models.total++;
+        _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/enolaGay/", "enolaGay.babylon", _scene, function(newMeshes)
         {
-            newMeshes[0].position = new BABYLON.Vector3(0, -30, -500);
+            _models.push(newMeshes[0]);
+            newMeshes[0].position = new BABYLON.Vector3(0, 0, -1000);
+            newMeshes[0].checkCollisions = true;
             _infos[_modelNames.enolaGay = newMeshes[0].id] = document.getElementById("infoEnolaGay");
-            _models.loaded++;
+            _loadingModels.loaded++;
         });
         
-        _models.total++;
+        _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/museum/", "museum.babylon", _scene, function(newMeshes)
         {
-            newMeshes[0].position = new BABYLON.Vector3(0, -30, 500);
-            newMeshes[0].scaling = new BABYLON.Vector3(.5, .5, .5);
-            _models.loaded++;
+            _models.push(newMeshes[0]);
+            newMeshes[0].position = new BABYLON.Vector3(0, 0, 0);
+            newMeshes[0].scaling = new BABYLON.Vector3(1, 1, 1);
+            newMeshes[0].checkCollisions = true;
+            _loadingModels.loaded++;
         });
         
         // Set up player
         _player.body = _camera;
         _player.forward = BABYLON.Mesh.CreateBox("playerForward", 3, _scene);
         _player.forward.parent = _player.body;
-        _player.forward.position.z = 1;
+        _player.forward.position.z = 3;
         _player.forward.isVisible = false;
         _player.left = BABYLON.Mesh.CreateBox("playerLeft", 3, _scene);
         _player.left.parent = _player.body;
-        _player.left.position.x = -1;
+        _player.left.position.x = -3;
         _player.left.isVisible = false;
         _player.right = BABYLON.Mesh.CreateBox("playerRight", 3, _scene);
         _player.right.parent = _player.body;
-        _player.right.position.x = 1;
+        _player.right.position.x = 3;
         _player.right.isVisible = false;
         
         // Once the scene is loaded, just register a render loop to render it
         engine.runRenderLoop(function ()
         {
             if(modelsLoaded())
-            {                   
+            {               
+                document.getElementById("debugText").innerHTML = "";
                 updatePlayer();
                 _scene.render();
             }
@@ -166,6 +179,7 @@ function updatePlayer()
         _player.body.position.x += _player.vel.x;
         _player.body.position.y += _player.vel.y;
         _player.body.position.z += _player.vel.z;
+        collides();
     }
     
     if(_keys.backward)
@@ -173,32 +187,35 @@ function updatePlayer()
         _player.body.position.x -= _player.vel.x;
         _player.body.position.y -= _player.vel.y;
         _player.body.position.z -= _player.vel.z;
+        collides();
     }
     
     if(_keys.left)
     {
         _player.body.position.x += _player.velLeft.x;
         _player.body.position.z += _player.velLeft.z;
+        collides();
     }
     
     if(_keys.right)
     {
         _player.body.position.x += _player.velRight.x;
         _player.body.position.z += _player.velRight.z;
+        collides();
     }
     
-    if(_viewAngle.vertSum > _viewAngle.vertMax)
-        _viewAngle.vertSum = _viewAngle.vertMax;
+}
+
+function collides()
+{
+//    for(var i = 0, len = _models.length; i < len; i++)
+//        if(_player.forward.intersectsMesh(_models[i], true))
+//            console.log("COLLIDED");
     
-    else if(_viewAngle.vertSum < _viewAngle.vertMin)
-        _viewAngle.vertSum = _viewAngle.vertMin;
-    
-    // x is up/down, y is left/right
-    _player.body.rotation.y = toRad(_viewAngle.horzSum);
-    _player.body.rotation.x = toRad(_viewAngle.vertSum);
+    return false;
 }
 
 function modelsLoaded()
 {
-    return _models.total === _models.loaded;
+    return _loadingModels.total === _loadingModels.loaded;
 }

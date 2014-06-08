@@ -20,6 +20,7 @@ function showInfo(el)
     removeAnimations(_dom.hideInfo);
     _dom.hideInfo.classList.add(_anims.fadeIn);
     disablePointerLock();
+    hideCrosshair();
     _game.inGame = false;
 }
 
@@ -35,6 +36,7 @@ function hideInfo()
         removeAnimations(_dom.hideInfo);
         _dom.hideInfo.classList.add(_anims.fadeOut);
         enablePointerLock();
+        showCrosshair();
     }
 }
 
@@ -46,6 +48,7 @@ function showStartMenu()
     removeAnimations(_dom.startMenu);
     _dom.startMenu.classList.add(_anims.upToCenter);
     _game.inGame = false;
+    disablePointerLock();
 }
 
 // Hides start menu

@@ -18,6 +18,13 @@
     font-family: openSansLight;
 }
 
+#debugText
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 48px;
+}
 #gameCanvas
 {
     position: absolute;

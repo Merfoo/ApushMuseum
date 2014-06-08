@@ -22,6 +22,10 @@ function keyUpEvent(e)
         case _keyCodes.esc:
             showStartMenu();
             break;
+            
+        case _keyCodes.enter:
+            initGame();
+            break;
     }
 }
 
