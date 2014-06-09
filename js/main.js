@@ -136,14 +136,16 @@ window.onload = function()
         frame.id = _modelNames.battleOfMidway;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMidway/img1.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 231 x 218
+        frame.scaling = new BABYLON.Vector3(231, 218, 1);
         frame.position = new BABYLON.Vector3(300, 0, -1000);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.battleOfMidway;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMidway/img2.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 276 x 182
+        frame.scaling = new BABYLON.Vector3(276, 182, 1);
         frame.position = new BABYLON.Vector3(600, 0, -1000);
         frame.checkCollisions = true;
         
@@ -153,14 +155,16 @@ window.onload = function()
         frame.id = _modelNames.iwoJima;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img1.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 232 x 217
+        frame.scaling = new BABYLON.Vector3(232, 217, 1);
         frame.position = new BABYLON.Vector3(0, 0, -1000);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.iwoJima;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img2.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 417 x 336
+        frame.scaling = new BABYLON.Vector3(417, 336, 1);
         frame.position = new BABYLON.Vector3(-300, 0, -1000);
         frame.checkCollisions = true;
         
@@ -170,14 +174,16 @@ window.onload = function()
         frame.id = _modelNames.leyte;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/leyte/img1.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 259 x 195
+        frame.scaling = new BABYLON.Vector3(259, 195, 1);
         frame.position = new BABYLON.Vector3(-600, 0, -1000);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.leyte;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/leyte/img2.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 283 x 178
+        frame.scaling = new BABYLON.Vector3(283, 178, 1);
         frame.position = new BABYLON.Vector3(-900, 0, -1000);
         frame.checkCollisions = true;
         
@@ -187,14 +193,16 @@ window.onload = function()
         frame.id = _modelNames.manhattan;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img1.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 193 x 182
+        frame.scaling = new BABYLON.Vector3(193, 182, 1);
         frame.position = new BABYLON.Vector3(-1200, 0, -1000);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.manhattan;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img2.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 88 x 112
+        frame.scaling = new BABYLON.Vector3(88, 112, 1);
         frame.position = new BABYLON.Vector3(-1500, 0, -1000);
         frame.checkCollisions = true;
         
@@ -204,14 +212,16 @@ window.onload = function()
         frame.id = _modelNames.okinawa;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/okinawa/img1.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 682 x 499
+        frame.scaling = new BABYLON.Vector3(682, 499, 1);
         frame.position = new BABYLON.Vector3(-1800, 0, -1000);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.okinawa;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/okinawa/img2.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 410 x 260
+        frame.scaling = new BABYLON.Vector3(410, 260, 1);
         frame.position = new BABYLON.Vector3(-2100, 0, -1000);
         frame.checkCollisions = true;
         
@@ -221,14 +231,16 @@ window.onload = function()
         frame.id = _modelNames.pearlHabor;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img1.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 245 x 205
+        frame.scaling = new BABYLON.Vector3(245, 205, 1);
         frame.position = new BABYLON.Vector3(-2400, 0, -1000);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.pearlHabor;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img2.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 277 x 182
+        frame.scaling = new BABYLON.Vector3(277, 182, 1);
         frame.position = new BABYLON.Vector3(-2700, 0, -1000);
         frame.checkCollisions = true;
         
@@ -238,14 +250,16 @@ window.onload = function()
         frame.id = _modelNames.saipan;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/saipan/img1.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 276 x 182
+        frame.scaling = new BABYLON.Vector3(276, 182, 1);
         frame.position = new BABYLON.Vector3(-3000, 0, -1000);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.saipan;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/saipan/img2.jpg", _scene);
-        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        // 259 x 194
+        frame.scaling = new BABYLON.Vector3(259, 194, 1);
         frame.position = new BABYLON.Vector3(-3300, 0, -1000);
         frame.checkCollisions = true;
         
