@@ -36,7 +36,7 @@ window.onload = function()
         
         // Cameras
         _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 750, 550), _scene);
-        _camera.speed = 10.0;
+        _camera.speed = 8.0;
         _camera.maxZ = 10000;
         disableCameraControls();
         
@@ -264,11 +264,11 @@ window.onload = function()
         frame.checkCollisions = true;
         
         // Scene collision
-        _scene.gravity = new BABYLON.Vector3(0, 0, 0);      // Set gravity for the scene (G force like, on Y-axis)
+        _scene.gravity = new BABYLON.Vector3(0, -9.81, 0);      // Set gravity for the scene (G force like, on Y-axis)
         _scene.collisionsEnabled = true;                    // Enable Collisions
         _camera.checkCollisions = true;                     // Then apply collisions and gravity to the active camera
         _camera.applyGravity = true;
-        _camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);   // Set the ellipsoid around the camera (e.g. your player's size)
+        _camera.ellipsoid = new BABYLON.Vector3(2, 30, 2);   // Set the ellipsoid around the camera (e.g. your player's size)
         
         // Once the scene is loaded, just register a render loop to render it
         engine.runRenderLoop(function ()
@@ -321,7 +321,6 @@ function updatePlayer()
         _lastCam.rotation.x = _camera.rotation.x;
         _lastCam.rotation.y = _camera.rotation.y;
         _lastCam.rotation.z = _camera.rotation.z;
-        console.log("not null");
     }
     
     else
@@ -332,7 +331,6 @@ function updatePlayer()
         _camera.rotation.x = _lastCam.rotation.x;
         _camera.rotation.y = _lastCam.rotation.y;
         _camera.rotation.z = _lastCam.rotation.z;
-        console.log("null");
     }
 }
 
@@ -370,7 +368,8 @@ function updateLoading()
     
     if(loaded / total !== 1)
     {
-        _dom.loadingMenu.innerHTML = "LOADED: " + Math.floor(100 * loaded / total) + "%";
+        var val = Math.floor(100 * loaded / total) || 0;
+        _dom.loadingMenu.innerHTML = "LOADED: " + val + "%";
         _loadingModels.done = false;
     }
     
