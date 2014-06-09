@@ -36,12 +36,9 @@ window.onload = function()
         
         // Cameras
         _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 750, 550), _scene);
-        _camera.keysUp = [_keyCodes.w];
-        _camera.keysDown = [_keyCodes.s];
-        _camera.keysLeft = [_keyCodes.a];
-        _camera.keysRight = [_keyCodes.d];
         _camera.speed = 10.0;
         _camera.maxZ = 10000;
+        disableCameraControls();
         
         // Attach camera to canvas
         _scene.activeCamera.attachControl(_dom.canvas);
@@ -127,7 +124,14 @@ window.onload = function()
                 _loadingModels.loadedData[_modelNames.museum] = e.loaded;
                 _loadingModels.totalData[_modelNames.museum] = e.total;
             }
-        );
+        );       
+
+        var plane = new BABYLON.Mesh.CreatePlane("plane", 1, _scene);
+        plane.material = new BABYLON.StandardMaterial("mat", _scene);
+        plane.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img1.jpg", _scene);
+        plane.scaling = new BABYLON.Vector3(250, 250, 1);
+        plane.position = new BABYLON.Vector3(0, 0, -1000);
+        console.log(plane.id + " --- " + plane.name);
         
         //Set gravity for the scene (G force like, on Y-axis)
         _scene.gravity = new BABYLON.Vector3(0, 0, 0);
@@ -135,11 +139,11 @@ window.onload = function()
         // Enable Collisions
         _scene.collisionsEnabled = true;
 
-        //Then apply collisions and gravity to the active camera
+        // Then apply collisions and gravity to the active camera
         _camera.checkCollisions = true;
         _camera.applyGravity = true;
 
-        //Set the ellipsoid around the camera (e.g. your player's size)
+        // Set the ellipsoid around the camera (e.g. your player's size)
         _camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
         
         // Once the scene is loaded, just register a render loop to render it
@@ -180,20 +184,21 @@ function initGame()
     enablePointerLock();
 }
 
-// enables pointerlock controls
+// Enables pointerlock controls
 function enablePointerLock()
 {
     _dom.canvas.requestPointerLock = _dom.canvas.webkitRequestPointerLock || _dom.canvas.mozRequestPointerLock;
     _dom.canvas.requestPointerLock();
 }
 
-// disables pointerlock controls
+// Disables pointerlock controls
 function disablePointerLock()
 {
     document.exitPointerLock = document.webkitExitPointerLock || document.mozExitPointerLock
     document.exitPointerLock();
 }
-// updated loading menu
+
+// Updated loading menu
 function updateLoading()
 {
     if(_loadingModels.done)
@@ -225,18 +230,6 @@ function updateLoading()
     }
 }
 
-// Converts degrees to radians
-function toRad(ang)
-{
-    return ang * Math.PI / 180;
-}
-
-// Converts radians to degrees
-function toDeg(rad)
-{
-    return rad * 180 / Math.PI;
-}
-
 // Handle key up event
 function keyUpEvent(e)
 {
@@ -259,14 +252,17 @@ function mouseClickEvent(e)
     
     if(picked.hit)
     {
-        switch(picked.pickedMesh.id)
+        for(var p in _modelNames)
         {
-            case _modelNames.littleBoy:
-            case _modelNames.fatMan:
-            case _modelNames.enolaGay:
-                showInfo(_infos[picked.pickedMesh.id]);
-                _modelNames.showing = picked.pickedMesh.id;
-                break;
+            if(_modelNames.hasOwnProperty(p))
+            {
+                if(picked.pickedMesh.id === _modelnames[p] && _modelNames[p] !== _modelNames.pedestal && _modelNames[p] !== _modelNames.museum)
+                {
+                    showInfo(_infos[picked.pickedMesh.id]);
+                    _modelNames.showing = picked.pickedMesh.id;
+                    break; 
+                }
+            }
         }
     }
 }
@@ -276,4 +272,22 @@ function windowLostFocusEvent()
 {
     if(_loadingModels.done)
         showStartMenu();
+}
+
+// Removes camera controls
+function disableCameraControls()
+{
+    _camera.keysUp = [];
+    _camera.keysDown = [];
+    _camera.keysLeft = [];
+    _camera.keysRight = [];
+}
+
+// Adds camera controls
+function enableCameraControls()
+{
+    _camera.keysUp = [_keyCodes.w];
+    _camera.keysDown = [_keyCodes.s];
+    _camera.keysLeft = [_keyCodes.a];
+    _camera.keysRight = [_keyCodes.d];
 }

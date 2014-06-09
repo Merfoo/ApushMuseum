@@ -21,6 +21,7 @@ function showInfo(el)
     _dom.hideInfo.classList.add(_anims.fadeIn);
     disablePointerLock();
     hideCrosshair();
+    disableCameraControls();
 }
 
 // Hides info page
@@ -35,12 +36,14 @@ function hideInfo()
         _dom.hideInfo.classList.add(_anims.fadeOut);
         enablePointerLock();
         showCrosshair();
+        enableCameraControls();
     }
 }
 
 // Shows start menu
 function showStartMenu()
 {
+    disableCameraControls();
     hideInfo();
     hideCrosshair();
     disablePointerLock();
@@ -51,6 +54,7 @@ function showStartMenu()
 // Hides start menu
 function hideStartMenu()
 {
+    enableCameraControls();
     showCrosshair();
     removeAnimations(_dom.startMenu);
     _dom.startMenu.classList.add(_anims.centerToUp);

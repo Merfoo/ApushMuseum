@@ -29,5 +29,12 @@ var _modelNames = {
     museum: "museum",
     pedestal: "column",
     littleBoy: "littleBoy", 
-    fatMan: "fatMan"
+    fatMan: "fatMan",
+    battleOfMidway: "battleOfMidway",
+    iwoJima: "iwoJima",
+    leyte: "leyte",
+    manHattan: "manHattan",
+    okinawa: "okinawa",
+    pearlHabor: "pearlHarbor",
+    saipan: "saipan"
 };
