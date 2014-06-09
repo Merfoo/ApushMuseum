@@ -125,26 +125,136 @@ window.onload = function()
                 _loadingModels.totalData[_modelNames.museum] = e.total;
             }
         );       
-
-        var plane = new BABYLON.Mesh.CreatePlane("plane", 1, _scene);
-        plane.material = new BABYLON.StandardMaterial("mat", _scene);
-        plane.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img1.jpg", _scene);
-        plane.scaling = new BABYLON.Vector3(250, 250, 1);
-        plane.position = new BABYLON.Vector3(0, 0, -1000);
-        console.log(plane.id + " --- " + plane.name);
         
-        //Set gravity for the scene (G force like, on Y-axis)
-        _scene.gravity = new BABYLON.Vector3(0, 0, 0);
-
-        // Enable Collisions
-        _scene.collisionsEnabled = true;
-
-        // Then apply collisions and gravity to the active camera
-        _camera.checkCollisions = true;
+        // Image frame
+        var plane = new BABYLON.Mesh.CreatePlane("frame", 1, _scene);
+        var frame = null;
+        
+        // Battle of Midway
+        _infos[_modelNames.battleOfMidway] = document.getElementById("infoBattleOfMidway");
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfMidway;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMidway/img1.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(300, 0, -1000);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfMidway;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMidway/img2.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(600, 0, -1000);
+        frame.checkCollisions = true;
+        
+        // Iwo Jima
+        _infos[_modelNames.iwoJima] = document.getElementById("infoIwoJima");
+        frame = plane.clone();
+        frame.id = _modelNames.iwoJima;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img1.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(0, 0, -1000);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.iwoJima;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img2.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-300, 0, -1000);
+        frame.checkCollisions = true;
+        
+        // Leyte
+        _infos[_modelNames.leyte] = document.getElementById("infoLeyte");
+        frame = plane.clone();
+        frame.id = _modelNames.leyte;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/leyte/img1.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-600, 0, -1000);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.leyte;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/leyte/img2.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-900, 0, -1000);
+        frame.checkCollisions = true;
+        
+        // Manhattan
+        _infos[_modelNames.manhattan] = document.getElementById("infoManhattan");
+        frame = plane.clone();
+        frame.id = _modelNames.manhattan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img1.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-1200, 0, -1000);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.manhattan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img2.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-1500, 0, -1000);
+        frame.checkCollisions = true;
+        
+        // Okinawa
+        _infos[_modelNames.okinawa] = document.getElementById("infoOkinawa");
+        frame = plane.clone();
+        frame.id = _modelNames.okinawa;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/okinawa/img1.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-1800, 0, -1000);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.okinawa;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/okinawa/img2.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-2100, 0, -1000);
+        frame.checkCollisions = true;
+        
+        // Pearl Harbor
+        _infos[_modelNames.pearlHabor] = document.getElementById("infoPearlHarbor");
+        frame = plane.clone();
+        frame.id = _modelNames.pearlHabor;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img1.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-2400, 0, -1000);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.pearlHabor;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img2.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-2700, 0, -1000);
+        frame.checkCollisions = true;
+        
+        // Saipan
+        _infos[_modelNames.saipan] = document.getElementById("infoSaipan");
+        frame = plane.clone();
+        frame.id = _modelNames.saipan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/saipan/img1.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-3000, 0, -1000);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.saipan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/saipan/img2.jpg", _scene);
+        frame.scaling = new BABYLON.Vector3(250, 250, 1);
+        frame.position = new BABYLON.Vector3(-3300, 0, -1000);
+        frame.checkCollisions = true;
+        
+        // Scene collision
+        _scene.gravity = new BABYLON.Vector3(0, 0, 0);      // Set gravity for the scene (G force like, on Y-axis)
+        _scene.collisionsEnabled = true;                    // Enable Collisions
+        _camera.checkCollisions = true;                     // Then apply collisions and gravity to the active camera
         _camera.applyGravity = true;
-
-        // Set the ellipsoid around the camera (e.g. your player's size)
-        _camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
+        _camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);   // Set the ellipsoid around the camera (e.g. your player's size)
         
         // Once the scene is loaded, just register a render loop to render it
         engine.runRenderLoop(function ()
@@ -153,6 +263,7 @@ window.onload = function()
             
             if(_loadingModels.done)
             {               
+                updatePlayer();
                 _scene.render();
             }
         });
@@ -178,10 +289,37 @@ function initDom()
     document.getElementById("play").onclick = initGame;
 }
 
+// Starts the game
 function initGame()
 {
     hideStartMenu();
     enablePointerLock();
+}
+
+// Updates player (camera)
+function updatePlayer()
+{
+    if(_modelNames.showing === null)
+    {
+        _lastCam.position.x = _camera.position.x;
+        _lastCam.position.y = _camera.position.y;
+        _lastCam.position.z = _camera.position.z;
+        _lastCam.rotation.x = _camera.rotation.x;
+        _lastCam.rotation.y = _camera.rotation.y;
+        _lastCam.rotation.z = _camera.rotation.z;
+        console.log("not null");
+    }
+    
+    else
+    {
+        _camera.position.x = _lastCam.position.x;
+        _camera.position.y = _lastCam.position.y;
+        _camera.position.z = _lastCam.position.z;
+        _camera.rotation.x = _lastCam.rotation.x;
+        _camera.rotation.y = _lastCam.rotation.y;
+        _camera.rotation.z = _lastCam.rotation.z;
+        console.log("null");
+    }
 }
 
 // Enables pointerlock controls
