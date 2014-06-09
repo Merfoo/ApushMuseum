@@ -256,7 +256,7 @@ function mouseClickEvent(e)
         {
             if(_modelNames.hasOwnProperty(p))
             {
-                if(picked.pickedMesh.id === _modelnames[p] && _modelNames[p] !== _modelNames.pedestal && _modelNames[p] !== _modelNames.museum)
+                if(picked.pickedMesh.id === _modelNames[p] && _modelNames[p] !== _modelNames.pedestal && _modelNames[p] !== _modelNames.museum)
                 {
                     showInfo(_infos[picked.pickedMesh.id]);
                     _modelNames.showing = picked.pickedMesh.id;
