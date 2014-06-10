@@ -174,6 +174,26 @@ window.onload = function()
             }
         );       
         
+        // Decision to bomb MIDDLE
+        _infos[_modelNames.decisionToBomb] = document.getElementById("infoDecisionToBomb");
+        frame = plane.clone();
+        frame.id = _modelNames.decisionToBomb;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/decisionToBomb/img1.jpg", _scene);
+        // 314 x 239
+        frame.scaling = new BABYLON.Vector3(314, 239, 1);
+        frame.position = new BABYLON.Vector3(-40, 500, 0);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.decisionToBomb;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/decisionToBomb/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-40, 700, 0);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
         
         // Battle of Midway BOTTOM
         _infos[_modelNames.battleOfMidway] = document.getElementById("infoBattleOfMidway");
