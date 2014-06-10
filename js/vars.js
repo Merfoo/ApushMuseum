@@ -1,5 +1,6 @@
 var _scene = null;
 var _camera = null;
+var _inGame = false;
 var _lastCam = { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 } };
 var _loadingModels = { done: false, total: 0, loaded: 0, totalData: {}, loadedData: {} };
 var _screen = { width: 0, height: 0 };

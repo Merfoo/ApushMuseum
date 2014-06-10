@@ -35,9 +35,16 @@ window.onload = function()
         skybox.scaling = new BABYLON.Vector3(100, 100, 100);
         
         // Cameras
-        _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(-700, 180, -6), _scene);
+        _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(-955, 180, -6), _scene);
         _camera.speed = 20;
         _camera.maxZ = 10000;
+        _camera.rotation.y = toRad(90);
+        _lastCam.position.x = _camera.position.x;
+        _lastCam.position.y = _camera.position.y;
+        _lastCam.position.z = _camera.position.z;
+        _lastCam.rotation.x = _camera.rotation.x;
+        _lastCam.rotation.y = _camera.rotation.y;
+        _lastCam.rotation.z = _camera.rotation.z;
         disableCameraControls();
         
         // Attach camera to canvas
@@ -55,11 +62,6 @@ window.onload = function()
                 pedestal.checkCollisions = true;
                 _modelNames.pedestal = pedestal.id;
                 _loadingModels.loaded++;
-                
-                
-                // Little Boy
-//                ped = pedestal.clone();
-//                ped.position = new BABYLON.Vector3(2123, 310, -1200);
             },
             function(e)
             {
@@ -160,7 +162,6 @@ window.onload = function()
         // 276 x 182
         frame.scaling = new BABYLON.Vector3(276, 182, 1);
         frame.position = new BABYLON.Vector3(120, 130, -240);
-        //frame.rotation.y = toRad(-180);
         frame.checkCollisions = true;
         
         // Iwo Jima BOTTOM
@@ -213,7 +214,7 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img1.jpg", _scene);
         // 193 x 182
         frame.scaling = new BABYLON.Vector3(193, 182, 1);
-        frame.position = new BABYLON.Vector3(-1200, 0, -1000);
+        frame.position = new BABYLON.Vector3(2, 450, 1666);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.manhattan;
@@ -221,18 +222,19 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img2.jpg", _scene);
         // 88 x 112
         frame.scaling = new BABYLON.Vector3(88, 112, 1);
-        frame.position = new BABYLON.Vector3(-1500, 0, -1000);
+        frame.position = new BABYLON.Vector3(300, 450, 1666);
         frame.checkCollisions = true;
         
-        // Okinawa IDK
+        // Okinawa BOTTOM
         _infos[_modelNames.okinawa] = document.getElementById("infoOkinawa");
         frame = plane.clone();
         frame.id = _modelNames.okinawa;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/okinawa/img1.jpg", _scene);
         // 682 x 499
-        frame.scaling = new BABYLON.Vector3(682, 499, 1);
-        frame.position = new BABYLON.Vector3(-1800, 0, -1000);
+        frame.scaling = new BABYLON.Vector3(272.8, 199.6, 1);
+        frame.position = new BABYLON.Vector3(850, 150, -1244);
+        frame.rotation.y = toRad(205);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.okinawa;
@@ -240,7 +242,8 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/okinawa/img2.jpg", _scene);
         // 410 x 260
         frame.scaling = new BABYLON.Vector3(410, 260, 1);
-        frame.position = new BABYLON.Vector3(-2100, 0, -1000);
+        frame.position = new BABYLON.Vector3(875, 150, -750);
+        frame.rotation.y = toRad(-53);
         frame.checkCollisions = true;
         
         // Pearl Harbor BOTTOM
@@ -272,7 +275,8 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/saipan/img1.jpg", _scene);
         // 276 x 182
         frame.scaling = new BABYLON.Vector3(276, 182, 1);
-        frame.position = new BABYLON.Vector3(-3000, 0, -1000);
+        frame.position = new BABYLON.Vector3(850, 150, 1244);
+        frame.rotation.y = toRad(-25);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.saipan;
@@ -280,7 +284,50 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/saipan/img2.jpg", _scene);
         // 259 x 194
         frame.scaling = new BABYLON.Vector3(259, 194, 1);
-        frame.position = new BABYLON.Vector3(-3300, 0, -1000);
+        frame.position = new BABYLON.Vector3(875, 150, 750);
+        frame.rotation.y = toRad(233);
+        frame.checkCollisions = true;
+        
+        // Mindoro BOTTOM
+        _infos[_modelNames.battleOfMindoro] = document.getElementById("infoBattleOfMindoro");
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfMindoro;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMindoro/img1.jpg", _scene);
+        // 371 x 298
+        frame.scaling = new BABYLON.Vector3(296.8, 238.4, 1);
+        frame.position = new BABYLON.Vector3(-360, 150, -1500);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfMindoro;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMindoro/img2.jpg", _scene);
+        // 295 x 405
+        frame.scaling = new BABYLON.Vector3(147.5, 202.5, 1);
+        frame.position = new BABYLON.Vector3(-369, 150, -1200);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
+        
+        // Luzon BOTTOM
+        _infos[_modelNames.battleOfLuzon] = document.getElementById("infoBattleOfLuzon");
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfLuzon;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfLuzon/img1.jpg", _scene);
+        // 900 x 618
+        frame.scaling = new BABYLON.Vector3(225, 154.5, 1);
+        frame.position = new BABYLON.Vector3(-360, 150, 1500);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfLuzon;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfLuzon/img2.jpg", _scene);
+        // 738 x 768
+        frame.scaling = new BABYLON.Vector3(184.5, 192, 1);
+        frame.position = new BABYLON.Vector3(-369, 150, 1200);
+        frame.rotation.y = toRad(-90);
         frame.checkCollisions = true;
         
         // Scene collision
@@ -335,7 +382,7 @@ function initGame()
 // Updates player (camera)
 function updatePlayer()
 {
-    if(_modelNames.showing === null)
+    if(_modelNames.showing === null && _inGame)
     {
         _lastCam.position.x = _camera.position.x;
         _lastCam.position.y = _camera.position.y;

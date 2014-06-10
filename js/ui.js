@@ -49,6 +49,7 @@ function showStartMenu()
     disablePointerLock();
     removeAnimations(_dom.startMenu);
     _dom.startMenu.classList.add(_anims.upToCenter);
+    _inGame = false;
 }
 
 // Hides start menu
@@ -58,6 +59,7 @@ function hideStartMenu()
     showCrosshair();
     removeAnimations(_dom.startMenu);
     _dom.startMenu.classList.add(_anims.centerToUp);
+    _inGame = true;
 }
 
 // Shows crosshair
