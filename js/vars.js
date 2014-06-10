@@ -40,5 +40,9 @@ var _modelNames = {
     pearlHarbor: "pearlHarbor",
     saipan: "saipan",
     battleOfMindoro: "battleOfMindoro",
-    battleOfLuzon: "battleOfLuzon"
+    battleOfLuzon: "battleOfLuzon",
+    rebuildingJapan: "rebuildingJapan",
+    nagasakiAfter: "nagasakiAfter",
+    hiroshimaAfter: "hiroshimaAfter",
+    decisionToBomb: "decisionToBomb"
 };

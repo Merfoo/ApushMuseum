@@ -34,7 +34,7 @@ window.onload = function()
         skybox.infiniteDistance = true;
         skybox.scaling = new BABYLON.Vector3(100, 100, 100);
         
-        // Cameras
+        // Cameras standard(-955, 180, -6), top(-281, 981, 173)
         _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(-955, 180, -6), _scene);
         _camera.speed = 20;
         _camera.maxZ = 10000;
@@ -441,6 +441,69 @@ window.onload = function()
         frame.rotation.y = toRad(165);
         frame.checkCollisions = true;
         
+        // Rebuilding Japan TOP
+        _infos[_modelNames.rebuildingJapan] = document.getElementById("infoRebuildingJapan");
+        frame = plane.clone();
+        frame.id = _modelNames.rebuildingJapan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/rebuildingJapan/img1.jpg", _scene);
+        // 549 x 340
+        frame.scaling = new BABYLON.Vector3(137.25, 85, 1);
+        frame.position = new BABYLON.Vector3(-424, 980, 333);
+        frame.rotation.y = toRad(0);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.rebuildingJapan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/rebuildingJapan/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-424, 1070, 333);
+        frame.rotation.y = toRad(0);
+        frame.checkCollisions = true;
+        
+        // Nagasaki after Japan TOP
+        _infos[_modelNames.nagasakiAfter] = document.getElementById("infoNagasakiAfter");
+        frame = plane.clone();
+        frame.id = _modelNames.nagasakiAfter;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/nagasakiAfter/img1.jpg", _scene);
+        // 457 x 300
+        frame.scaling = new BABYLON.Vector3(150.81, 99, 1);
+        frame.position = new BABYLON.Vector3(-777, 980, 0);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.nagasakiAfter;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/nagasakiAfter/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-777, 1070, 0);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
+        
+        // Rebuilding Japan TOP
+        _infos[_modelNames.hiroshimaAfter] = document.getElementById("infoHiroshimaAfter");
+        frame = plane.clone();
+        frame.id = _modelNames.hiroshimaAfter;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/hiroshimaAfter/img1.jpg", _scene);
+        // 1920 x 1280
+        frame.scaling = new BABYLON.Vector3(153.6, 102.4, 1);
+        frame.position = new BABYLON.Vector3(-424, 980, -333);
+        frame.rotation.y = toRad(180);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.hiroshimaAfter;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/hiroshimaAfter/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-424, 1070, -333);
+        frame.rotation.y = toRad(180);
+        frame.checkCollisions = true;
+        
         // Scene collision
         _scene.gravity = new BABYLON.Vector3(0, -24.52, 0);  // Set gravity for the scene (G force like, on Y-axis)
         _scene.collisionsEnabled = true;                    // Enable Collisions
@@ -456,8 +519,8 @@ window.onload = function()
             if(_loadingModels.done)
             {               
                 updatePlayer();
-                console.log(_camera.position);
-                console.log(toDeg(_camera.rotation.y) + " = y");
+//                console.log(_camera.position);
+//                console.log(toDeg(_camera.rotation.y) + " = y");
                 _scene.render();
             }
         });
