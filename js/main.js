@@ -264,7 +264,7 @@ window.onload = function()
         frame.checkCollisions = true;
         
         // Scene collision
-        _scene.gravity = new BABYLON.Vector3(0, -9.81, 0);      // Set gravity for the scene (G force like, on Y-axis)
+        _scene.gravity = new BABYLON.Vector3(0, -9.81, 0);  // Set gravity for the scene (G force like, on Y-axis)
         _scene.collisionsEnabled = true;                    // Enable Collisions
         _camera.checkCollisions = true;                     // Then apply collisions and gravity to the active camera
         _camera.applyGravity = true;
