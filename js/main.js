@@ -32,11 +32,11 @@ window.onload = function()
         skybox.material.reflectionTexture = new BABYLON.CubeTexture("images/skybox/skybox", _scene);
         skybox.material.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skybox.infiniteDistance = true;
-        skybox.scaling = new BABYLON.Vector3(50, 50, 50);
+        skybox.scaling = new BABYLON.Vector3(100, 100, 100);
         
         // Cameras
-        _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 750, 550), _scene);
-        _camera.speed = 8.0;
+        _camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(-700, 180, -6), _scene);
+        _camera.speed = 20;
         _camera.maxZ = 10000;
         disableCameraControls();
         
@@ -45,10 +45,35 @@ window.onload = function()
     
         // Load all the models
         _loadingModels.total++;
+        BABYLON.SceneLoader.ImportMesh("", "scenes/pedestal/", "column.babylon", _scene,
+            function(newMeshes)
+            {
+                var ped = null;
+                var pedestal = newMeshes[0];
+                pedestal.position = new BABYLON.Vector3(0, -1000, 0);
+                pedestal.scaling = new BABYLON.Vector3(.5, .5, .5);
+                pedestal.checkCollisions = true;
+                _modelNames.pedestal = pedestal.id;
+                _loadingModels.loaded++;
+                
+                
+                // Little Boy
+//                ped = pedestal.clone();
+//                ped.position = new BABYLON.Vector3(2123, 310, -1200);
+            },
+            function(e)
+            {
+                _loadingModels.loadedData[_modelNames.pedestal] = e.loaded;
+                _loadingModels.totalData[_modelNames.pedestal] = e.total;
+            }
+        );
+
+        _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/littleBoy/", "littleBoy.babylon", _scene, 
             function(newMeshes)
             {
-                newMeshes[0].position = new BABYLON.Vector3(0, -30, 0);
+                newMeshes[0].position = new BABYLON.Vector3(2123, 420, -1200);
+                newMeshes[0].scaling = new BABYLON.Vector3(3, 3, 3);
                 newMeshes[0].checkCollisions = true;
                 _infos[_modelNames.littleBoy = newMeshes[0].id] = document.getElementById("infoLittleBoy");
                 _loadingModels.loaded++;
@@ -59,29 +84,14 @@ window.onload = function()
                 _loadingModels.totalData[_modelNames.littleBoy] = e.total;
             }
         );
-        
-        _loadingModels.total++;
-        BABYLON.SceneLoader.ImportMesh("", "scenes/pedestal/", "column.babylon", _scene,
-            function(newMeshes)
-            {
-                newMeshes[0].position = new BABYLON.Vector3(0, -181, 0);
-                newMeshes[0].scaling = new BABYLON.Vector3(.5, .5, .5);
-                newMeshes[0].checkCollisions = true;
-                _modelNames.pedestal = newMeshes[0].id;
-                _loadingModels.loaded++;
-            },
-            function(e)
-            {
-                _loadingModels.loadedData[_modelNames.pedestal] = e.loaded;
-                _loadingModels.totalData[_modelNames.pedestal] = e.total;
-            }
-        );
-        
+
         _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/fatMan/", "fatMan.babylon", _scene, 
             function(newMeshes)
             {
-                newMeshes[0].position = new BABYLON.Vector3(0, -30, 100);
+                newMeshes[0].position = new BABYLON.Vector3(130, 450, -1200);
+                newMeshes[0].scaling = new BABYLON.Vector3(3, 3, 3);
+                newMeshes[0].rotation.y = toRad(180);
                 newMeshes[0].checkCollisions = true;
                 _infos[_modelNames.fatMan = newMeshes[0].id] = document.getElementById("infoFatMan");
                 _loadingModels.loaded++;
@@ -97,7 +107,9 @@ window.onload = function()
         BABYLON.SceneLoader.ImportMesh("", "scenes/enolaGay/", "enolaGay.babylon", _scene, 
             function(newMeshes)
             {
-                newMeshes[0].position = new BABYLON.Vector3(0, 0, -1000);
+                newMeshes[0].position = new BABYLON.Vector3(2150, 400, 1200);
+                newMeshes[0].scaling = new BABYLON.Vector3(10, 10, 10);
+                newMeshes[0].rotation.y = toRad(-45);
                 newMeshes[0].checkCollisions = true;
                 _infos[_modelNames.enolaGay = newMeshes[0].id] = document.getElementById("infoEnolaGay");
                 _loadingModels.loaded++;
@@ -114,7 +126,7 @@ window.onload = function()
             function(newMeshes)
             {
                 newMeshes[0].position = new BABYLON.Vector3(0, 0, 0);
-                newMeshes[0].scaling = new BABYLON.Vector3(1, 1, 1);
+                newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
                 newMeshes[0].checkCollisions = true;
                 _modelNames.museum = newMeshes[0].id;
                 _loadingModels.loaded++;
@@ -130,7 +142,7 @@ window.onload = function()
         var plane = new BABYLON.Mesh.CreatePlane("frame", 1, _scene);
         var frame = null;
         
-        // Battle of Midway
+        // Battle of Midway BOTTOM
         _infos[_modelNames.battleOfMidway] = document.getElementById("infoBattleOfMidway");
         frame = plane.clone();
         frame.id = _modelNames.battleOfMidway;
@@ -138,7 +150,8 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMidway/img1.jpg", _scene);
         // 231 x 218
         frame.scaling = new BABYLON.Vector3(231, 218, 1);
-        frame.position = new BABYLON.Vector3(300, 0, -1000);
+        frame.position = new BABYLON.Vector3(-371, 150, -723);
+        frame.rotation.y = toRad(-90);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.battleOfMidway;
@@ -146,10 +159,11 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMidway/img2.jpg", _scene);
         // 276 x 182
         frame.scaling = new BABYLON.Vector3(276, 182, 1);
-        frame.position = new BABYLON.Vector3(600, 0, -1000);
+        frame.position = new BABYLON.Vector3(120, 130, -240);
+        //frame.rotation.y = toRad(-180);
         frame.checkCollisions = true;
         
-        // Iwo Jima
+        // Iwo Jima BOTTOM
         _infos[_modelNames.iwoJima] = document.getElementById("infoIwoJima");
         frame = plane.clone();
         frame.id = _modelNames.iwoJima;
@@ -157,18 +171,20 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img1.jpg", _scene);
         // 232 x 217
         frame.scaling = new BABYLON.Vector3(232, 217, 1);
-        frame.position = new BABYLON.Vector3(0, 0, -1000);
+        frame.position = new BABYLON.Vector3(131, 131, 243);
+        frame.rotation.y = toRad(-180);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.iwoJima;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/img2.jpg", _scene);
         // 417 x 336
-        frame.scaling = new BABYLON.Vector3(417, 336, 1);
-        frame.position = new BABYLON.Vector3(-300, 0, -1000);
+        frame.scaling = new BABYLON.Vector3(333, 268, 1);
+        frame.position = new BABYLON.Vector3(-368, 150, 700);
+        frame.rotation.y = toRad(-90);
         frame.checkCollisions = true;
         
-        // Leyte
+        // Leyte BOTTOM
         _infos[_modelNames.leyte] = document.getElementById("infoLeyte");
         frame = plane.clone();
         frame.id = _modelNames.leyte;
@@ -176,7 +192,8 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/leyte/img1.jpg", _scene);
         // 259 x 195
         frame.scaling = new BABYLON.Vector3(259, 195, 1);
-        frame.position = new BABYLON.Vector3(-600, 0, -1000);
+        frame.position = new BABYLON.Vector3(2624, 150, 1500);
+        frame.rotation.y = toRad(90);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.leyte;
@@ -184,10 +201,11 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/leyte/img2.jpg", _scene);
         // 283 x 178
         frame.scaling = new BABYLON.Vector3(283, 178, 1);
-        frame.position = new BABYLON.Vector3(-900, 0, -1000);
+        frame.position = new BABYLON.Vector3(2624, 150, 855);
+        frame.rotation.y = toRad(90);
         frame.checkCollisions = true;
         
-        // Manhattan
+        // Manhattan MIDDLE
         _infos[_modelNames.manhattan] = document.getElementById("infoManhattan");
         frame = plane.clone();
         frame.id = _modelNames.manhattan;
@@ -206,7 +224,7 @@ window.onload = function()
         frame.position = new BABYLON.Vector3(-1500, 0, -1000);
         frame.checkCollisions = true;
         
-        // Okinawa
+        // Okinawa IDK
         _infos[_modelNames.okinawa] = document.getElementById("infoOkinawa");
         frame = plane.clone();
         frame.id = _modelNames.okinawa;
@@ -225,7 +243,7 @@ window.onload = function()
         frame.position = new BABYLON.Vector3(-2100, 0, -1000);
         frame.checkCollisions = true;
         
-        // Pearl Harbor
+        // Pearl Harbor BOTTOM
         _infos[_modelNames.pearlHabor] = document.getElementById("infoPearlHarbor");
         frame = plane.clone();
         frame.id = _modelNames.pearlHabor;
@@ -233,7 +251,8 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img1.jpg", _scene);
         // 245 x 205
         frame.scaling = new BABYLON.Vector3(245, 205, 1);
-        frame.position = new BABYLON.Vector3(-2400, 0, -1000);
+        frame.position = new BABYLON.Vector3(2624, 150, -850);
+        frame.rotation.y = toRad(90);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.pearlHabor;
@@ -241,10 +260,11 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img2.jpg", _scene);
         // 277 x 182
         frame.scaling = new BABYLON.Vector3(277, 182, 1);
-        frame.position = new BABYLON.Vector3(-2700, 0, -1000);
+        frame.position = new BABYLON.Vector3(2624, 150, -1500);
+        frame.rotation.y = toRad(90);
         frame.checkCollisions = true;
         
-        // Saipan
+        // Saipan BOTTOM
         _infos[_modelNames.saipan] = document.getElementById("infoSaipan");
         frame = plane.clone();
         frame.id = _modelNames.saipan;
@@ -264,11 +284,11 @@ window.onload = function()
         frame.checkCollisions = true;
         
         // Scene collision
-        _scene.gravity = new BABYLON.Vector3(0, -9.81, 0);  // Set gravity for the scene (G force like, on Y-axis)
+        _scene.gravity = new BABYLON.Vector3(0, -24.52, 0);  // Set gravity for the scene (G force like, on Y-axis)
         _scene.collisionsEnabled = true;                    // Enable Collisions
         _camera.checkCollisions = true;                     // Then apply collisions and gravity to the active camera
         _camera.applyGravity = true;
-        _camera.ellipsoid = new BABYLON.Vector3(2, 30, 2);   // Set the ellipsoid around the camera (e.g. your player's size)
+        _camera.ellipsoid = new BABYLON.Vector3(4, 60, 4);   // Set the ellipsoid around the camera (e.g. your player's size)
         
         // Once the scene is loaded, just register a render loop to render it
         engine.runRenderLoop(function ()
@@ -278,6 +298,8 @@ window.onload = function()
             if(_loadingModels.done)
             {               
                 updatePlayer();
+                console.log(_camera.position);
+                console.log(toDeg(_camera.rotation.y) + " = y");
                 _scene.render();
             }
         });
@@ -441,4 +463,16 @@ function enableCameraControls()
     _camera.keysDown = [_keyCodes.s];
     _camera.keysLeft = [_keyCodes.a];
     _camera.keysRight = [_keyCodes.d];
+}
+
+// Converts deg to rad
+function toRad(deg)
+{
+    return deg * Math.PI / 180;
+}
+
+// Converts deg to rad
+function toDeg(rad)
+{
+    return rad * 180 / Math.PI;
 }
