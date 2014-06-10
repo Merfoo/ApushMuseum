@@ -37,7 +37,7 @@ var _modelNames = {
     leyte: "leyte",
     manhattan: "manhattan",
     okinawa: "okinawa",
-    pearlHabor: "pearlHarbor",
+    pearlHarbor: "pearlHarbor",
     saipan: "saipan",
     battleOfMindoro: "battleOfMindoro",
     battleOfLuzon: "battleOfLuzon"

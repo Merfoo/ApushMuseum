@@ -50,6 +50,10 @@ window.onload = function()
         // Attach camera to canvas
         _scene.activeCamera.attachControl(_dom.canvas);
     
+        // Image frame
+        var plane = new BABYLON.Mesh.CreatePlane("frame", 1, _scene);
+        var frame = null;
+        
         // Load all the models
         _loadingModels.total++;
         BABYLON.SceneLoader.ImportMesh("", "scenes/pedestal/", "column.babylon", _scene,
@@ -79,6 +83,16 @@ window.onload = function()
                 newMeshes[0].checkCollisions = true;
                 _infos[_modelNames.littleBoy = newMeshes[0].id] = document.getElementById("infoLittleBoy");
                 _loadingModels.loaded++;
+                
+                // Title
+                frame = plane.clone();
+                frame.id = _modelNames.littleBoy;
+                frame.material = new BABYLON.StandardMaterial("mat", _scene);
+                frame.material.diffuseTexture = new BABYLON.Texture("images/littleBoy/text.png", _scene);
+                frame.scaling = new BABYLON.Vector3(200, 75, 1);
+                frame.position = new BABYLON.Vector3(2511, 577, -1553);
+                frame.rotation.y = toRad(135);
+                frame.checkCollisions = true;
             },
             function(e)
             {
@@ -97,6 +111,16 @@ window.onload = function()
                 newMeshes[0].checkCollisions = true;
                 _infos[_modelNames.fatMan = newMeshes[0].id] = document.getElementById("infoFatMan");
                 _loadingModels.loaded++;
+                
+                // Title
+                frame = plane.clone();
+                frame.id = _modelNames.fatMan;
+                frame.material = new BABYLON.StandardMaterial("mat", _scene);
+                frame.material.diffuseTexture = new BABYLON.Texture("images/fatMan/text.png", _scene);
+                frame.scaling = new BABYLON.Vector3(200, 75, 1);
+                frame.position = new BABYLON.Vector3(300, 677, -1666);
+                frame.rotation.y = toRad(-180);
+                frame.checkCollisions = true;
             },
             function(e)
             {
@@ -115,6 +139,16 @@ window.onload = function()
                 newMeshes[0].checkCollisions = true;
                 _infos[_modelNames.enolaGay = newMeshes[0].id] = document.getElementById("infoEnolaGay");
                 _loadingModels.loaded++;
+                
+                // Title
+                frame = plane.clone();
+                frame.id = _modelNames.enolaGay;
+                frame.material = new BABYLON.StandardMaterial("mat", _scene);
+                frame.material.diffuseTexture = new BABYLON.Texture("images/enolaGay/text.png", _scene);
+                frame.scaling = new BABYLON.Vector3(200, 75, 1);
+                frame.position = new BABYLON.Vector3(2511, 577, 1553);
+                frame.rotation.y = toRad(45);
+                frame.checkCollisions = true;
             },
             function(e)
             {
@@ -140,9 +174,6 @@ window.onload = function()
             }
         );       
         
-        // Image frame
-        var plane = new BABYLON.Mesh.CreatePlane("frame", 1, _scene);
-        var frame = null;
         
         // Battle of Midway BOTTOM
         _infos[_modelNames.battleOfMidway] = document.getElementById("infoBattleOfMidway");
@@ -162,6 +193,15 @@ window.onload = function()
         // 276 x 182
         frame.scaling = new BABYLON.Vector3(276, 182, 1);
         frame.position = new BABYLON.Vector3(120, 130, -240);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfMidway;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMidway/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-267, 130, -328);
+        frame.rotation.y = toRad(-30);
         frame.checkCollisions = true;
         
         // Iwo Jima BOTTOM
@@ -184,6 +224,15 @@ window.onload = function()
         frame.position = new BABYLON.Vector3(-368, 150, 700);
         frame.rotation.y = toRad(-90);
         frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.iwoJima;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/iwoJima/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-267, 130, 328);
+        frame.rotation.y = toRad(210);
+        frame.checkCollisions = true;
         
         // Leyte BOTTOM
         _infos[_modelNames.leyte] = document.getElementById("infoLeyte");
@@ -205,6 +254,15 @@ window.onload = function()
         frame.position = new BABYLON.Vector3(2624, 150, 855);
         frame.rotation.y = toRad(90);
         frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.leyte;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/leyte/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(2624, 150, 1175);
+        frame.rotation.y = toRad(90);
+        frame.checkCollisions = true;
         
         // Manhattan MIDDLE
         _infos[_modelNames.manhattan] = document.getElementById("infoManhattan");
@@ -214,7 +272,7 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img1.jpg", _scene);
         // 193 x 182
         frame.scaling = new BABYLON.Vector3(193, 182, 1);
-        frame.position = new BABYLON.Vector3(2, 450, 1666);
+        frame.position = new BABYLON.Vector3(202, 450, 1666);
         frame.checkCollisions = true;
         frame = plane.clone();
         frame.id = _modelNames.manhattan;
@@ -222,7 +280,15 @@ window.onload = function()
         frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/img2.jpg", _scene);
         // 88 x 112
         frame.scaling = new BABYLON.Vector3(88, 112, 1);
-        frame.position = new BABYLON.Vector3(300, 450, 1666);
+        frame.position = new BABYLON.Vector3(400, 450, 1666);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.manhattan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/manhattan/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(300, 677, 1666);
         frame.checkCollisions = true;
         
         // Okinawa BOTTOM
@@ -245,11 +311,20 @@ window.onload = function()
         frame.position = new BABYLON.Vector3(875, 150, -750);
         frame.rotation.y = toRad(-53);
         frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.okinawa;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/okinawa/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(720, 150, -1050);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
         
         // Pearl Harbor BOTTOM
-        _infos[_modelNames.pearlHabor] = document.getElementById("infoPearlHarbor");
+        _infos[_modelNames.pearlHarbor] = document.getElementById("infoPearlHarbor");
         frame = plane.clone();
-        frame.id = _modelNames.pearlHabor;
+        frame.id = _modelNames.pearlHarbor;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img1.jpg", _scene);
         // 245 x 205
@@ -258,12 +333,21 @@ window.onload = function()
         frame.rotation.y = toRad(90);
         frame.checkCollisions = true;
         frame = plane.clone();
-        frame.id = _modelNames.pearlHabor;
+        frame.id = _modelNames.pearlHarbor;
         frame.material = new BABYLON.StandardMaterial("mat", _scene);
         frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/img2.jpg", _scene);
         // 277 x 182
         frame.scaling = new BABYLON.Vector3(277, 182, 1);
         frame.position = new BABYLON.Vector3(2624, 150, -1500);
+        frame.rotation.y = toRad(90);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.pearlHarbor;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/pearlHarbor/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(2624, 150, -1175);
         frame.rotation.y = toRad(90);
         frame.checkCollisions = true;
         
@@ -287,6 +371,15 @@ window.onload = function()
         frame.position = new BABYLON.Vector3(875, 150, 750);
         frame.rotation.y = toRad(233);
         frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.saipan;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/saipan/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(720, 150, 1050);
+        frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
         
         // Mindoro BOTTOM
         _infos[_modelNames.battleOfMindoro] = document.getElementById("infoBattleOfMindoro");
@@ -308,6 +401,15 @@ window.onload = function()
         frame.position = new BABYLON.Vector3(-369, 150, -1200);
         frame.rotation.y = toRad(-90);
         frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfMindoro;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfMindoro/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-200, 150, -1111);
+        frame.rotation.y = toRad(15);
+        frame.checkCollisions = true;
         
         // Luzon BOTTOM
         _infos[_modelNames.battleOfLuzon] = document.getElementById("infoBattleOfLuzon");
@@ -328,6 +430,15 @@ window.onload = function()
         frame.scaling = new BABYLON.Vector3(184.5, 192, 1);
         frame.position = new BABYLON.Vector3(-369, 150, 1200);
         frame.rotation.y = toRad(-90);
+        frame.checkCollisions = true;
+        // Title
+        frame = plane.clone();
+        frame.id = _modelNames.battleOfLuzon;
+        frame.material = new BABYLON.StandardMaterial("mat", _scene);
+        frame.material.diffuseTexture = new BABYLON.Texture("images/battleOfLuzon/text.png", _scene);
+        frame.scaling = new BABYLON.Vector3(200, 75, 1);
+        frame.position = new BABYLON.Vector3(-200, 150, 1111);
+        frame.rotation.y = toRad(165);
         frame.checkCollisions = true;
         
         // Scene collision
@@ -413,7 +524,7 @@ function enablePointerLock()
 // Disables pointerlock controls
 function disablePointerLock()
 {
-    document.exitPointerLock = document.webkitExitPointerLock || document.mozExitPointerLock
+    document.exitPointerLock = document.webkitExitPointerLock || document.mozExitPointerLock;
     document.exitPointerLock();
 }
 
