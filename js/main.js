@@ -600,14 +600,14 @@ function updatePlayer()
 // Enables pointerlock controls
 function enablePointerLock()
 {
-    _dom.canvas.requestPointerLock = _dom.canvas.webkitRequestPointerLock || _dom.canvas.mozRequestPointerLock;
+    _dom.canvas.requestPointerLock = _dom.canvas.requestPointerLock || _dom.canvas.webkitRequestPointerLock || _dom.canvas.mozRequestPointerLock;
     _dom.canvas.requestPointerLock();
 }
 
 // Disables pointerlock controls
 function disablePointerLock()
 {
-    document.exitPointerLock = document.webkitExitPointerLock || document.mozExitPointerLock;
+    document.exitPointerLock = document.exitPointerLock || document.webkitExitPointerLock || document.mozExitPointerLock;
     document.exitPointerLock();
 }
 
